@@ -1,0 +1,213 @@
+body, .container {
+    height :100%;
+    width :100%;
+    margin: 0;
+    padding: 0;
+}
+
+body, .container-fluid {
+    background-color: rebeccapurple;
+}
+
+.navbar-custom li > a {
+    color: black;
+}
+
+.navbar-custom .navbar-nav > .active > a, 
+.navbar-custom .navbar-nav > .active > a:hover, 
+.navbar-custom .navbar-nav > .active > a:focus {
+    color: orange; /*BACKGROUND color for active*/
+    background-color: red;
+}
+
+.navbar-custom { 
+    background-color: orange; 
+}
+
+.cont-r{
+    margin: 0;
+    padding: 0;
+    background-color: red;
+    border-radius: 10px;
+}
+
+.row{
+    margin: 0;
+    padding: 5%;
+    background-color: red;
+    border-radius: 5px;
+}
+
+.alpha{
+    background-color: transparent;
+}
+
+.strch{
+    width: 100%;
+}
+
+.vcenter {
+    height: 100%; 
+    display: flex;
+    align-items: center;
+}
+
+.hcenter{
+    display: flex;
+    justify-content: center;
+}
+
+.logo{
+    overflow: hidden;
+    padding: 0;
+    border: none;
+}
+
+.logo img{
+    height: 100%; 
+    width: 100%; 
+    object-fit: contain;
+}
+
+.sign{
+    width: 100%;
+    padding: 2%;
+    background-color: azure;
+    border-radius: 5px;
+    border: 2px solid  darkblue;
+
+}
+.sign > * {
+    margin-top: 5%;
+    margin-right: 2%; 
+}
+
+.titel{
+    margin: 0;
+    margin-bottom: 1%;
+    padding: 1%;
+    border-radius: 5px;
+}
+
+@font-face {
+	font-family: 'myfont2';
+    src: url(../font/BlackoakStd.otf);
+}
+
+.titel > h1{
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    color: orange;
+    font-family: myfont2;
+    text-shadow: 15px 15px 20px #4a004d;
+}
+
+.grid{
+    background: orange;
+    box-shadow: 10px 15px 20px #500000;
+}
+
+.grid:hover > .card{
+    transform: scale(1.1);
+    box-shadow: 0px 0px 0px;
+}
+
+.card {
+    font-size: 1em;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 5px 10px 20px #888888;
+}
+
+.card img{
+    height: 100%; 
+    width: 100%; 
+    object-fit: contain;
+}
+
+.card-block {
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 2%;
+    background: #fff;
+}
+
+.card-block > h1, 
+.card-block > h2, 
+.card-block > h3, 
+.card-block > h4,
+.card-block > h5, 
+.card-block > h6{
+    line-height: 1em; 
+}
+
+.card-block > h1, 
+.card-block > h2, 
+.card-block > h3{
+    margin-top: 0.5em
+}
+
+.card-footer {
+    max-width: 100%;
+    padding : 2%;
+    border-top: 1px solid black;
+    background: #fff;
+}
+
+.box{
+    margin: 0;
+    margin-bottom: 5%;
+    padding: 5%;
+    background: orange;
+    border-radius: 10px;
+    box-shadow: 10px 15px 20px #500000;
+}
+
+.vid{}
+
+.poster{
+    margin: 0;
+    margin-bottom: 5%;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 10px 15px 20px #500000;
+}
+.poster img{
+    height: 100%; 
+    width: 100%; 
+    object-fit: contain;
+}
+
+.nox{
+    margin: 0;
+    padding: 0;
+}
+
+#mDetail h1, 
+#mDetail h2, 
+#mDetail h3, 
+#mDetail h4,
+#mDetail h5, 
+#mDetail h6,
+#mDetail span{
+    line-height: 1.2em; 
+}
+
+.foto{
+    margin: 0;
+    margin-bottom: 5%;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.foto img{
+    height: 100%; 
+    width: 100%; 
+    object-fit: contain;
+}
