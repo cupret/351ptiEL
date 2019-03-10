@@ -115,11 +115,3 @@ app.controller('movieDetail', function($scope, appData, $http, $sce){
         angular.element(document).find('#mlist').scope().scrollY();
     }
 });
-
-function UserDB(){
-    if (localStorage.getItem("userDB") === null) {
-        var userDB = [];
-        userDB.push({'user':'user', 'pass': 'uaspti'});
-        localStorage.setItem('userDB', JSON.stringify(userDB));
-    }
-}
