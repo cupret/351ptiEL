@@ -8,6 +8,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" language="javascript" src="js/window.js"></script>
     <script type="text/javascript" language="javascript" src="js/movieList.js"></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -24,16 +25,22 @@
                     <input class="nm form-control" type="text" placeholder="Username" value=""/>
                     <input class="pw form-control " type="password" placeholder="Password" value=""/>
                     <label>Remember Me</label><input class="rmbr" type="checkbox"/><br>
-                    <button id="rgstr_btn" type="submit" class="btn btn-primary">Register</button>
+                    <!--<button id="rgstr_btn" type="submit" class="btn btn-primary">Register</button>-->
                     <button id="login_btn" type="submit" class="btn btn-primary">Log In</button>
                 </form>
             </div>
         </div>
     </div>
     <div ng-show="login">
-        <nav class="navi navbar navbar-default">
+        <nav class="navi navbar navbar-custom">
             <div class="navbar-header">
-                <a class="navbar-brand" >Movie</a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ><strong>Movie</strong></a>
             </div>  
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -55,7 +62,7 @@
             <div id="mlist" class="container-fluid" ng-controller="movieList">
                     <div class="col-dm-10 col-dm-offset-1">
                         <div class="titel hcenter">
-                           <h1>{{titel}}</h1>
+                            <h1 align="center" >{{titel}}</h1>
                         </div>
                 </div>
                 <nav class="hcenter">
