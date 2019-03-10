@@ -45,11 +45,11 @@ app.controller('movieList', function($scope, appData, $http){
             $scope.totalPage = response.data.total_pages;
         });
         if($scope.filter == 'now_playing') {
-            $scope.titel = 'Now Playing';
+            $scope.titel = 'NOW PLAYING';
         } else if($scope.filter == 'popular') {
-            $scope.titel = 'Popular';
+            $scope.titel = 'POPULAR';
         } else if($scope.filter == 'upcoming') {
-            $scope.titel = 'Up Coming';
+            $scope.titel = 'UP COMING';
         }
     };
     $scope.search = function(querry) {
