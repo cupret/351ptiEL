@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Movie Base</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" language="javascript" src="js/window.js"></script>
+    <script type="text/javascript" language="javascript" src="js/movieList.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body ng-app="xapp" ng-controller="mainCtrl" onload="UserDB()">
+    <div class="container" ng-hide="login">
+        <div class="row alpha">
+            <div class="logo col-md-4 col-md-offset-4 vcenter">
+                <img src="images/mov.png">
+            </div>
+            <div class="col-md-4 col-md-offset-4 vcenter">
+                <form class="sign form-group "> 
+                    <input class="nm form-control" type="text" placeholder="Username" value=""/>
+                    <input class="pw form-control " type="password" placeholder="Password" value=""/>
+                    <label>Remember Me</label><input class="rmbr" type="checkbox"/><br>
+                    <button id="rgstr_btn" type="submit" class="btn btn-primary">Register</button>
+                    <button id="login_btn" type="submit" class="btn btn-primary">Log In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div ng-show="login">
+        <nav class="navi navbar navbar-custom">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ><strong>Movie</strong></a>
+            </div>  
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#" ng-click="selectFilter('now_playing')">Now Playing</a></li>
+                    <li><a href="#" ng-click="selectFilter('popular')">Popular</a></li>
+                    <li><a href="#" ng-click="selectFilter('upcoming')">Up Coming</a></li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <input class="form-control" type="text" placeholder="Search" value="" ng-model="sr">
+                    <button type="submit" class="btn btn-default" ng-click="searchMovie(sr)">search</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" ng-click="changeFocus('about')">About Me</a></li>
+                    <li><a id="logout_btn" href="#" ng-click="logIn(false)">Log Out</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div ng-show="focus == 'list'">
+            <div id="mlist" class="container-fluid" ng-controller="movieList">
+                    <div class="col-dm-10 col-dm-offset-1">
+                        <div class="titel hcenter">
+                            <h1 align="center" >{{titel}}</h1>
+                        </div>
+                </div>
+                <nav class="hcenter">
+                    <ul class="pagination">
+                        <li><a href="#" ng-click="changePage(1)">First</a></li>
+                        <li><a href="#" ng-click="changePage(page-1)">Prev</a></li>
+                        <li><a>{{page}}</a></li>
+                        <li><a href="#" ng-click="changePage(page+1)">Next</a></li>
+                        <li><a href="#" ng-click="changePage(totalPage)">Last</a></li>
+                    </ul>
+                </nav>
+                <div class="row">
+                    <div class="grid col-sm-6 col-md-4 col-lg-3" ng-repeat="movie in movieDB" my-repeat-directive>
+                        <div class="card">
+                            <div><img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"></div>
+                            <div class="card-block">
+                                <h3>{{ movie.title }}</h3>
+                                <h5>Release Date: {{ movie.release_date }}</h5>
+                            </div>
+                            <div class="card-footer hcenter">
+                                <button class="btn btn-primary strch" ng-click="detail(movie.id)">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <nav class="hcenter">
+                    <ul class="pagination">
+                        <li><a href="#" ng-click="changePage(1)">First</a></li>
+                        <li><a href="#" ng-click="changePage(page-1)">Prev</a></li>
+                        <li><a>{{page}}</a></li>
+                        <li><a href="#" ng-click="changePage(page+1)">Next</a></li>
+                        <li><a href="#" ng-click="changePage(totalPage)">Last</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>        
+        <div ng-show="focus == 'detail'">
+            <div id="mDetail" class="container-fluid" ng-controller="movieDetail">
+                <div class="row nox  hcenter">
+                    <button class="btn btn-primary strch" ng-click="back()">Back</button>
+                </div>
+                <div class="row">
+                    <div class="poster col-md-5">
+                        <img src="https://image.tmdb.org/t/p/original/{{movie.poster_path}}">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="box">
+                            <h1>{{movie.original_title}}</h1>
+                            <span>| </span><span ng-repeat="genre in movie.genres"> {{genre.name}} |</span>
+                            <h4>Run Time : {{movie.runtime}} minutes</h4>
+                            <h4> Release Date : {{movie.release_date}}</h43>
+                            <h2>Synopsis</h2>
+                            <p>{{movie.overview}}</p>
+                            <div ng-if="movie.homepage">
+                                <a href="{{movie.homepage}}" class="btn btn-primary">Website</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="url" class="col-md-10 col-md-offset-1">
+                        <div class="box">
+                            <h2>{{trailer.name}}</h2>
+                            <iframe class="vid" width="100%" ng-src="{{url}}" onload="vidScale()"></iframe>
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="box">
+                            <h2>Budget&emsp;&emsp;: ${{movie.budget}} (approx.)</h2>
+                            <h2>Revenue&emsp;: ${{movie.revenue}} (approx.)<h2>
+                            <h2>Produced By : </h2>
+                            <ul>
+                                <li ng-repeat="comp in movie.production_companies" >
+                                    <h4>{{ comp.name }}<h4>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row nox hcenter">
+                    <button class="btn btn-primary strch" ng-click="back()">Back</button>
+                </div>
+            </div>
+        </div>
+        <div ng-show="focus == 'about'">
+            <div id="about" class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="box">
+                            <h3>Designed By<h3>
+                                <div class="row nox alpha">
+                                    <div class="col-md-3"></div>
+                                    <div class="foto col-md-6">
+                                        <img src="images/foto.jpg">
+                                    </div>
+                                </div>
+                            <h1 style="text-align: center;">Joshua Axel Wijaya<h1>
+                            <h2 style="text-align: center;">00000013351<h2>
+                            <br>
+                            <h4>This Web is not an offical website, etc.<h4>
+                            <h4>Rather it is merely a web created to fulfill a coursework.<h4>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="box">
+                            <h2>This WEB Powered By:</h2>
+                            <ul>
+                                <li><h4><a href="https://developers.themoviedb.org/3/">The Movie DataBase API</a></h4></li>
+                                <li><h4><a href="https://jquery.com/">JQuerry</a></h4></li>
+                                <li><h4><a href="https://github.com/js-cookie/js-cookie">js-cookie</a></h4></li>
+                                <li><h4><a href="https://angularjs.org/">Angular</a></h4></li>
+                                <li><h4><a href="https://getbootstrap.com/">Bootstrap</a></h4></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
