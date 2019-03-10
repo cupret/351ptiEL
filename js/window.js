@@ -6,7 +6,16 @@ gerid = function(){
 
 vidScale = function(){
     var v = $('.vid').width(); 
+    var v2 = $('.titel > img').width(); 
     $('.vid').css('height', v*9/16 +'px');
+}
+
+function UserDB(){
+    if (localStorage.getItem("userDB") === null) {
+        var userDB = [];
+        userDB.push({'user':'user', 'pass': 'user'});
+        localStorage.setItem('userDB', JSON.stringify(userDB));
+    }
 }
 
 $(document).ready(function() {
@@ -90,6 +99,3 @@ $(document).ready(function() {
         $(this).parent().addClass("active");
     });
 });
-
-
-
