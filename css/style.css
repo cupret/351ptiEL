@@ -9,6 +9,21 @@ body, .container-fluid {
     background-color: rebeccapurple;
 }
 
+.navbar-custom li > a {
+    color: black;
+}
+
+.navbar-custom .navbar-nav > .active > a, 
+.navbar-custom .navbar-nav > .active > a:hover, 
+.navbar-custom .navbar-nav > .active > a:focus {
+    color: orange; /*BACKGROUND color for active*/
+    background-color: red;
+}
+
+.navbar-custom { 
+    background-color: orange; 
+}
+
 .cont-r{
     margin: 0;
     padding: 0;
@@ -71,14 +86,21 @@ body, .container-fluid {
     margin: 0;
     margin-bottom: 1%;
     padding: 1%;
-    background: orange;
     border-radius: 5px;
-    box-shadow: 15px 15px 20px #4a004d;
+}
+
+@font-face {
+	font-family: 'myfont2';
+    src: url(../font/BlackoakStd.otf);
 }
 
 .titel > h1{
+    max-width: 100%;
     margin: 0;
     padding: 0;
+    color: orange;
+    font-family: myfont2;
+    text-shadow: 15px 15px 20px #4a004d;
 }
 
 .grid{
